@@ -27,10 +27,7 @@ export class CreateUserController {
 			// Return the created user data with a 201 (Created) status code
 			return response.status(201).json(responseBody);
 		} catch (err) {
-			// Return an error response with a 500 status code if something goes wrong
-			return response.status(500).json({
-				message: err.message || "Internal server error",
-			});
+			next(err);
 		}
 	}
 }
