@@ -1,4 +1,5 @@
 import { User } from "../../../entities/User/User";
+import { CustomError, ErrorCatalog } from "../../../errors/CustomError";
 import { IUsersRepository } from "../../../repositories/Users/IUsersRepository";
 import { ICreateUserRequestDTO, ICreateUserResponseDTO } from "./CreateUserDTO";
 import { createUserValidator } from "./CreateUserValidator";
@@ -19,7 +20,9 @@ export class CreateUserUseCase {
 
 		// If the user already exists, throw an error
 		if (userAlreadyExists) {
-			throw new Error("User already exists");
+			throw new CustomError(
+				ErrorCatalog.ERROR.USER.SERVICE.USER_ALREADY_EXISTS
+			);
 		}
 
 		// Clean up the name and email fields to ensure proper formatting
