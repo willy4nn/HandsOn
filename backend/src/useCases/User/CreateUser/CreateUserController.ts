@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { CreateUserUseCase } from "./CreateUserUseCase";
 import { ICreateUserResponseDTO } from "./CreateUserDTO";
+import { ApiResponse } from "../../../helpers/ApiResponse";
 
 export class CreateUserController {
 	constructor(private createUserUseCase: CreateUserUseCase) {}
@@ -19,10 +20,10 @@ export class CreateUserController {
 				password,
 			});
 
-			const responseBody = {
-				data: createdUserDTO,
-				message: "User created successfully",
-			};
+			const responseBody = ApiResponse.success(
+				createdUserDTO,
+				"User created successfully"
+			);
 
 			// Return the created user data with a 201 (Created) status code
 			return response.status(201).json(responseBody);
