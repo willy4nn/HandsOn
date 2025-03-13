@@ -1,6 +1,7 @@
 import { User } from "../../../entities/User/User";
 import { IUsersRepository } from "../../../repositories/Users/IUsersRepository";
 import { ICreateUserRequestDTO, ICreateUserResponseDTO } from "./CreateUserDTO";
+import { createUserValidator } from "./CreateUserValidator";
 import bcrypt from "bcrypt";
 
 export class CreateUserUseCase {
@@ -8,6 +9,9 @@ export class CreateUserUseCase {
 	async execute(
 		data: ICreateUserRequestDTO
 	): Promise<ICreateUserResponseDTO> {
+		// Calls the function to validate user creation data
+		createUserValidator(data);
+
 		// Check if a user already exists with the provided email
 		const userAlreadyExists = await this.usersRepository.findByEmail(
 			data.email.toLowerCase()
