@@ -194,6 +194,11 @@ class ErrorCatalog {
 					errorName: "USER_ALREADY_EXISTS",
 					statusCode: 409,
 				},
+				EMAIL_ALREADY_IN_USE: {
+					message: "Email is already in use",
+					errorName: "EMAIL_ALREADY_IN_USE",
+					statusCode: 409,
+				},
 				INVALID_USER_STATUS: {
 					message: "Invalid user status",
 					errorName: "INVALID_USER_STATUS",
