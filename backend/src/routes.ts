@@ -4,6 +4,7 @@ import { loginUserController } from "./useCases/User/LoginUser";
 import { logoutUserController } from "./useCases/User/LogoutUser";
 import { authMiddleware } from "./middlewares/authMiddleware";
 import { updateUserController } from "./useCases/User/UpdateUser";
+import { deleteUserController } from "./useCases/User/DeleteUser";
 
 const router = Router();
 
@@ -25,6 +26,11 @@ router.post("/logout", authMiddleware, (request, response, next) => {
 // PUT route to update a user
 router.put("/users", authMiddleware, (request, response, next) => {
 	return updateUserController.handle(request, response, next);
+});
+
+// DELETE route to delete a user
+router.delete("/users", authMiddleware, (request, response, next) => {
+	return deleteUserController.handle(request, response, next);
 });
 
 export { router };
