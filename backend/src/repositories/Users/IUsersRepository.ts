@@ -7,6 +7,9 @@ export interface IUsersRepository {
 	// Method to update a user
 	update(user: User): Promise<void>;
 
+	// Method to delete a user
+	delete(id: string): Promise<void>;
+
 	// Method to find a user by email
 	findByEmail(email: string): Promise<User>;
 
