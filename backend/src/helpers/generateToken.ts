@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import { CustomError, ErrorCatalog } from "../errors/CustomError";
 
-export function generateToken(userId: string): string {
+export function generateToken(userId: string, role: string): string {
 	const secretKey: string | undefined = process.env.JWT_SECRET_KEY;
 
 	if (!secretKey) {
@@ -10,7 +10,7 @@ export function generateToken(userId: string): string {
 		);
 	}
 
-	return jwt.sign({ userId }, secretKey, {
+	return jwt.sign({ userId, role }, secretKey, {
 		expiresIn: "1h",
 	});
 }
