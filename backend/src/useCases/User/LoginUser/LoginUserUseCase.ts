@@ -49,7 +49,7 @@ export class LoginUserUseCase {
 		}
 
 		// Generate a token for the authenticated user
-		const token = generateToken(userExists.id);
+		const token = generateToken(userExists.id, userExists.role);
 
 		// Return the generated token
 		return token;
