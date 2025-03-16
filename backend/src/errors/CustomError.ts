@@ -221,6 +221,15 @@ class ErrorCatalog {
 				},
 			},
 		},
+		ACTIVITY: {
+			REPOSITORY: {
+				ACTIVITY_SAVE_FAILED: {
+					message: "Failed to save activity",
+					errorName: "ACTIVITY_SAVE_FAILED",
+					statusCode: 500,
+				},
+			},
+		},
 		SERVER: {
 			INTERNAL_ERROR: {
 				message: "Internal server error",
