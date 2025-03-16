@@ -23,7 +23,15 @@ export class CreateActivityUseCase {
 			created_by,
 			max_participants,
 			date,
+			role,
 		} = data;
+
+		// Validate if the role is admin
+		if (role !== "admin") {
+			throw new CustomError(
+				ErrorCatalog.ERROR.ACTIVITY.VALIDATION.INVALID_ROLE
+			);
+		}
 
 		// Create a new activity instance
 		const activity = new Activity({
