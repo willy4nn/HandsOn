@@ -229,6 +229,85 @@ class ErrorCatalog {
 					statusCode: 500,
 				},
 			},
+			VALIDATION: {
+				ID_REQUIRED: {
+					message: "Activity ID is required",
+					errorName: "ID_REQUIRED",
+					statusCode: 400,
+				},
+				ID_INVALID: {
+					message: "Activity ID is invalid",
+					errorName: "ID_INVALID",
+					statusCode: 400,
+				},
+				ID_INVALID_FORMAT: {
+					message: "Activity ID format is invalid",
+					errorName: "ID_INVALID_FORMAT",
+					statusCode: 400,
+				},
+				TITLE_REQUIRED: {
+					message: "Title is required",
+					errorName: "TITLE_REQUIRED",
+					statusCode: 400,
+				},
+				TITLE_INVALID_LENGTH: {
+					message: "Title must be between 3 and 100 characters",
+					errorName: "TITLE_INVALID_LENGTH",
+					statusCode: 400,
+				},
+				DESCRIPTION_REQUIRED: {
+					message: "Description is required",
+					errorName: "DESCRIPTION_REQUIRED",
+					statusCode: 400,
+				},
+				DESCRIPTION_INVALID_LENGTH: {
+					message:
+						"Description must be between 10 and 500 characters",
+					errorName: "DESCRIPTION_INVALID_LENGTH",
+					statusCode: 400,
+				},
+				LOCATION_REQUIRED: {
+					message: "Location is required",
+					errorName: "LOCATION_REQUIRED",
+					statusCode: 400,
+				},
+				LOCATION_INVALID_LENGTH: {
+					message: "Location must be between 3 and 100 characters",
+					errorName: "LOCATION_INVALID_LENGTH",
+					statusCode: 400,
+				},
+				MAX_PARTICIPANTS_REQUIRED: {
+					message: "Max participants is required",
+					errorName: "MAX_PARTICIPANTS_REQUIRED",
+					statusCode: 400,
+				},
+				MAX_PARTICIPANTS_INVALID: {
+					message:
+						"Max participants must be an integer between 1 and 5",
+					errorName: "MAX_PARTICIPANTS_INVALID",
+					statusCode: 400,
+				},
+				ROLE_REQUIRED: {
+					message: "Role is required",
+					errorName: "ROLE_REQUIRED",
+					statusCode: 400,
+				},
+				INVALID_ROLE: {
+					message: "Role is invalid",
+					errorName: "INVALID_ROLE",
+					statusCode: 400,
+				},
+				DATE_REQUIRED: {
+					message: "Date is required",
+					errorName: "DATE_REQUIRED",
+					statusCode: 400,
+				},
+				INVALID_DATE_FORMAT: {
+					message: "Date format is invalid",
+					errorName: "INVALID_DATE_FORMAT",
+					statusCode: 400,
+				},
+			},
 		},
 		SERVER: {
 			INTERNAL_ERROR: {
