@@ -228,6 +228,11 @@ class ErrorCatalog {
 					errorName: "ACTIVITY_SAVE_FAILED",
 					statusCode: 500,
 				},
+				ACTIVITY_UPDATE_FAILED: {
+					message: "Failed to update activity",
+					errorName: "ACTIVITY_UPDATE_FAILED",
+					statusCode: 500,
+				},
 			},
 			VALIDATION: {
 				ID_REQUIRED: {
