@@ -233,6 +233,16 @@ class ErrorCatalog {
 					errorName: "ACTIVITY_UPDATE_FAILED",
 					statusCode: 500,
 				},
+				ACTIVITY_NOT_FOUND: {
+					message: "Activity not found",
+					errorName: "ACTIVITY_NOT_FOUND",
+					statusCode: 404,
+				},
+				ACTIVITY_FIND_FAILED: {
+					message: "Failed to find activity",
+					errorName: "ACTIVITY_FIND_FAILED",
+					statusCode: 500,
+				},
 			},
 			VALIDATION: {
 				ID_REQUIRED: {
@@ -311,6 +321,13 @@ class ErrorCatalog {
 					message: "Date format is invalid",
 					errorName: "INVALID_DATE_FORMAT",
 					statusCode: 400,
+				},
+			},
+			SERVICE: {
+				ACTIVITY_NOT_FOUND: {
+					message: "Activity not found",
+					errorName: "ACTIVITY_NOT_FOUND",
+					statusCode: 404,
 				},
 			},
 		},

@@ -58,4 +58,43 @@ export class PostgresActivitiesRepository implements IActivitiesRepository {
 			client.release();
 		}
 	}
+
+	// Method to find an activity by id
+	async findById(id: string): Promise<Activity> {
+		const client = await pool.connect();
+		try {
+			const res = await client.query(
+				"SELECT * FROM activities WHERE id = $1",
+				[id]
+			);
+			// If no activity is found, throw an error
+			if (res.rows.length > 0) {
+				// Return the found activity mapped to the Activity entity
+				const activityRow = res.rows[0];
+				// Pass props and id to the Activity constructor
+				const activity = new Activity(
+					{
+						title: activityRow.title,
+						date: activityRow.date,
+						location: activityRow.location,
+						description: activityRow.description,
+						max_participants: activityRow.max_participants,
+						created_by: activityRow.created_by,
+					},
+					activityRow.id,
+					activityRow.created_at,
+					activityRow.updated_at
+				);
+				return activity;
+			}
+			return null;
+		} catch (error) {
+			throw new CustomError(
+				ErrorCatalog.ERROR.ACTIVITY.REPOSITORY.ACTIVITY_FIND_FAILED,
+				error.message
+			);
+		} finally {
+			client.release();
+		}
+	}
 }
