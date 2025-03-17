@@ -6,4 +6,7 @@ export interface IActivitiesRepository {
 
 	// Method to update a activity
 	update(activity: Activity): Promise<void>;
+
+	// Method to find a activity by id
+	findById(id: string): Promise<Activity>;
 }
