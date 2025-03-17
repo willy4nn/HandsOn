@@ -10,8 +10,6 @@ export class CreateActivityController {
 		response: Response,
 		next: NextFunction
 	): Promise<Response<ICreateActivityResponseDTO>> {
-		console.log("Controller");
-
 		// Retrieve the user ID from the req.user object
 		const { userId, role } = request.user;
 		const { title, description, location, max_participants, date } = request.body;
