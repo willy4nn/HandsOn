@@ -16,6 +16,13 @@ export class UpdateActivityUseCase {
 		// Validate the data
 		updateActivityValidator(data);
 
+		// Validate if the role is admin
+		if (data.role !== "admin") {
+			throw new CustomError(
+				ErrorCatalog.ERROR.ACTIVITY.VALIDATION.INVALID_ROLE
+			);
+		}
+
 		// Find the activity by its ID
 		const activity = await this.activiesRepository.findById(data.id);
 
