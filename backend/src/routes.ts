@@ -6,6 +6,7 @@ import { authMiddleware } from "./middlewares/authMiddleware";
 import { updateUserController } from "./useCases/User/UpdateUser";
 import { deleteUserController } from "./useCases/User/DeleteUser";
 import { createActivityController } from "./useCases/Activity/CreateActivity";
+import { updateActivityController } from "./useCases/Activity/UpdateActivity";
 
 const router = Router();
 
@@ -37,6 +38,11 @@ router.delete("/users", authMiddleware, (request, response, next) => {
 // POST route to create a activity
 router.post("/activities", authMiddleware, (request, response, next) => {
 	return createActivityController.handle(request, response, next);
+});
+
+// POST route to create a activity
+router.put("/activities/:id", authMiddleware, (request, response, next) => {
+	return updateActivityController.handle(request, response, next);
 });
 
 export { router };
