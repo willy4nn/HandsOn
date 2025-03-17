@@ -243,6 +243,11 @@ class ErrorCatalog {
 					errorName: "ACTIVITY_FIND_FAILED",
 					statusCode: 500,
 				},
+				ACTIVITY_DELETE_FAILED: {
+					message: "Failed to delete activity",
+					errorName: "ACTIVITY_DELETE_FAILED",
+					statusCode: 500,
+				},
 			},
 			VALIDATION: {
 				ID_REQUIRED: {

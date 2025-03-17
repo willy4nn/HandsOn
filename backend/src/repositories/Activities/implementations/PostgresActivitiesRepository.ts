@@ -59,6 +59,21 @@ export class PostgresActivitiesRepository implements IActivitiesRepository {
 		}
 	}
 
+	// Method to delete an activity by id
+	async delete(id: string): Promise<void> {
+		const client = await pool.connect();
+		try {
+			await client.query("DELETE FROM activities WHERE id = $1", [id]);
+		} catch (error) {
+			throw new CustomError(
+				ErrorCatalog.ERROR.ACTIVITY.REPOSITORY.ACTIVITY_DELETE_FAILED,
+				error.message
+			);
+		} finally {
+			client.release();
+		}
+	}
+
 	// Method to find an activity by id
 	async findById(id: string): Promise<Activity> {
 		const client = await pool.connect();
