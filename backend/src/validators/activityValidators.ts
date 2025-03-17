@@ -122,4 +122,5 @@ export {
 	validateRole,
 	validateDate,
 	validateCreatedBy,
+	validateId,
 };
