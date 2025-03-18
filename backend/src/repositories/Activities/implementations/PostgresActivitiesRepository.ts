@@ -115,4 +115,39 @@ export class PostgresActivitiesRepository implements IActivitiesRepository {
 			client.release();
 		}
 	}
+
+	// Method to find all available activities (status = pending)
+	async findAllAvailable(): Promise<Activity[]> {
+		const client = await pool.connect();
+		try {
+			const res = await client.query(
+				"SELECT * FROM activities WHERE status = $1",
+				["pending"]
+			);
+			// Map the rows to Activity entities
+			return res.rows.map(
+				(activityRow) =>
+					new Activity({
+						id: activityRow.id,
+						createdBy: activityRow.created_by,
+						title: activityRow.title,
+						description: activityRow.description,
+						location: activityRow.location,
+						date: activityRow.date,
+						maxParticipants: activityRow.max_participants,
+						currentParticipants: activityRow.current_participants,
+						status: activityRow.status,
+						createdAt: activityRow.created_at,
+						updatedAt: activityRow.updated_at,
+					})
+			);
+		} catch (error) {
+			throw new CustomError(
+				ErrorCatalog.ERROR.ACTIVITY.REPOSITORY.ACTIVITY_FIND_ALL_FAILED,
+				error.message
+			);
+		} finally {
+			client.release();
+		}
+	}
 }
