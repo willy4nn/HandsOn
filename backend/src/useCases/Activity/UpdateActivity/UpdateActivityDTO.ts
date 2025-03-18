@@ -4,21 +4,22 @@ export interface IUpdateActivityRequestDTO {
 	title?: string;
 	description?: string;
 	location?: string;
-	max_participants?: number;
-	created_by: string;
-	role: string;
+	maxParticipants?: number;
 	date?: string;
+	role: string;
 }
 
 // Fields returned in the response after updating a activity
 export interface IUpdateActivityResponseDTO {
 	id: string;
+	createdBy: string;
 	title: string;
 	description: string;
 	location: string;
-	max_participants: number;
-	created_by: string;
 	date: string;
-	created_at: string;
-	updated_at: string;
+	maxParticipants: number;
+	currentParticipants: number;
+	status: string;
+	createdAt: string;
+	updatedAt: string;
 }

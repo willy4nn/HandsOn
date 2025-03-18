@@ -12,23 +12,22 @@ export class UpdateActivityController {
 		next: NextFunction
 	): Promise<Response<ApiResponse<IUpdateActivityResponseDTO>>> {
 		// Retrieve the user ID and role from the req.user object
-		const { userId, role } = request.user;
-		const { title, description, location, max_participants, date } =
-			request.body;
+		const { role } = request.user;
 		const { id } = request.params;
+		const { title, description, location, maxParticipants, date } =
+			request.body;
 
 		try {
 			// Execute the use case to update the activity
 			const updatedActivityDTO = await this.updateActivityUseCase.execute(
 				{
 					id,
-					role,
-					created_by: userId,
 					title,
 					date,
 					description,
 					location,
-					max_participants,
+					maxParticipants,
+					role,
 				}
 			);
 

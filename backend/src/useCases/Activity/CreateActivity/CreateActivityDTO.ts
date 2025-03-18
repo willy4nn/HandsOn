@@ -1,23 +1,25 @@
-// Fields required to create a activity
+// Fields required to create an activity
 export interface ICreateActivityRequestDTO {
 	title: string;
+	createdBy: string;
 	description: string;
 	location: string;
-	max_participants: number;
-	created_by: string;
-	role: string;
 	date: string;
+	maxParticipants: number;
+	role: string;
 }
 
-// Fields returned in the response after creating a activity
+// Fields returned in the response after creating an activity
 export interface ICreateActivityResponseDTO {
 	id: string;
+	createdBy: string;
 	title: string;
 	description: string;
 	location: string;
-	max_participants: number;
-	created_by: string;
 	date: string;
-	created_at: string;
-	updated_at: string;
+	maxParticipants: number;
+	currentParticipants: number;
+	status: string;
+	createdAt: string;
+	updatedAt: string;
 }
