@@ -248,6 +248,11 @@ class ErrorCatalog {
 					errorName: "ACTIVITY_DELETE_FAILED",
 					statusCode: 500,
 				},
+				ACTIVITY_FIND_ALL_FAILED: {
+					message: "Failed to find all available activities",
+					errorName: "ACTIVITY_FIND_ALL_FAILED",
+					statusCode: 500,
+				},
 			},
 			VALIDATION: {
 				ID_REQUIRED: {
