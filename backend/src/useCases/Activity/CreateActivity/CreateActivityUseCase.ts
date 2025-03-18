@@ -20,8 +20,8 @@ export class CreateActivityUseCase {
 			title,
 			description,
 			location,
-			created_by,
-			max_participants,
+			createdBy,
+			maxParticipants,
 			date,
 			role,
 		} = data;
@@ -39,8 +39,8 @@ export class CreateActivityUseCase {
 			description,
 			date,
 			location,
-			created_by,
-			max_participants,
+			createdBy,
+			maxParticipants,
 		});
 
 		// Persist the activity in the repository
@@ -49,14 +49,16 @@ export class CreateActivityUseCase {
 		// Return the response DTO with formatted dates
 		return {
 			id: activity.id,
+			createdBy: activity.createdBy,
 			title: activity.title,
 			description: activity.description,
-			date: activity.date,
 			location: activity.location,
-			max_participants: activity.max_participants,
-			created_by: activity.created_by,
-			created_at: activity.createdAt.toISOString(),
-			updated_at: activity.updatedAt.toISOString(),
+			date: activity.date,
+			maxParticipants: activity.maxParticipants,
+			currentParticipants: activity.currentParticipants,
+			status: activity.status,
+			createdAt: activity.createdAt,
+			updatedAt: activity.updatedAt,
 		};
 	}
 }

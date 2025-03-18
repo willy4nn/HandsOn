@@ -33,18 +33,19 @@ export class UpdateActivityUseCase {
 		}
 
 		// Create the updated activity object
-		const updatedActivity = new Activity(
-			{
-				title: data.title ?? activity.title,
-				date: data.date ?? activity.date,
-				location: data.location ?? activity.location,
-				description: data.description ?? activity.description,
-				max_participants:
-					data.max_participants ?? activity.max_participants,
-				created_by: data.created_by ?? activity.created_by,
-			},
-			data.id
-		);
+		const updatedActivity = new Activity({
+			id: activity.id,
+			createdBy: activity.createdBy,
+			title: data.title ?? activity.title,
+			description: data.description ?? activity.description,
+			location: data.location ?? activity.location,
+			date: data.date ?? activity.date,
+			maxParticipants: data.maxParticipants ?? activity.maxParticipants,
+			currentParticipants: activity.currentParticipants,
+			status: activity.status,
+			createdAt: activity.createdAt,
+			updatedAt: new Date().toISOString(),
+		});
 
 		// Save the updated activity
 		await this.activiesRepository.update(updatedActivity);
@@ -55,11 +56,13 @@ export class UpdateActivityUseCase {
 			title: updatedActivity.title,
 			description: updatedActivity.description,
 			location: updatedActivity.location,
-			max_participants: updatedActivity.max_participants,
-			created_by: updatedActivity.created_by,
+			maxParticipants: updatedActivity.maxParticipants,
+			currentParticipants: updatedActivity.currentParticipants,
+			createdBy: updatedActivity.createdBy,
 			date: updatedActivity.date,
-			created_at: updatedActivity.createdAt.toISOString(),
-			updated_at: updatedActivity.updatedAt.toISOString(),
+			status: updatedActivity.status,
+			createdAt: updatedActivity.createdAt,
+			updatedAt: updatedActivity.updatedAt,
 		};
 	}
 }

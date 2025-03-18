@@ -4,7 +4,6 @@ import {
 	validateDescription,
 	validateLocation,
 	validateMaxParticipants,
-	validateCreatedBy,
 	validateRole,
 	validateDate,
 } from "../../../validators/activityValidators";
@@ -27,17 +26,14 @@ export function updateActivityValidator(data: IUpdateActivityRequestDTO): void {
 	}
 
 	// Validate max participants if provided
-	if (data.max_participants) {
-		validateMaxParticipants(data.max_participants);
+	if (data.maxParticipants) {
+		validateMaxParticipants(data.maxParticipants);
 	}
 
 	// Validate date if provided
 	if (data.date) {
 		validateDate(data.date);
 	}
-
-	// Always validate created_by
-	validateCreatedBy(data.created_by);
 
 	// Always validate role
 	validateRole(data.role);
