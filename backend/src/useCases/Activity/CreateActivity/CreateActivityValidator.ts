@@ -1,21 +1,21 @@
 import { ICreateActivityRequestDTO } from "./CreateActivityDTO";
 import {
+	validateCreatedBy,
 	validateTitle,
 	validateDescription,
 	validateLocation,
-	validateMaxParticipants,
-	validateCreatedBy,
-	validateRole,
 	validateDate,
+	validateMaxParticipants,
+	validateRole,
 } from "../../../validators/activityValidators";
 
 // Validator function to validate activity creation data
 export function createActivityValidator(data: ICreateActivityRequestDTO): void {
+	validateCreatedBy(data.createdBy);
 	validateTitle(data.title);
 	validateDescription(data.description);
 	validateLocation(data.location);
-	validateMaxParticipants(data.max_participants);
-	validateCreatedBy(data.created_by);
-	validateRole(data.role);
 	validateDate(data.date);
+	validateMaxParticipants(data.maxParticipants);
+	validateRole(data.role);
 }
