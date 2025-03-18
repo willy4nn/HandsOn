@@ -4,20 +4,22 @@ import { CustomError, ErrorCatalog } from "../../../errors/CustomError";
 import { IActivitiesRepository } from "../IActivitiesRepository";
 
 export class PostgresActivitiesRepository implements IActivitiesRepository {
-	// Method to save a new activitie
+	// Method to save a new activity
 	async save(activity: Activity): Promise<void> {
 		const client = await pool.connect();
 		try {
 			await client.query(
-				"INSERT INTO activities (id, title, date, location, description, max_participants, created_by, created_at, updated_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)",
+				"INSERT INTO activities (id, created_by, title, description, location, date, max_participants, current_participants, status, created_at, updated_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)",
 				[
 					activity.id,
+					activity.createdBy,
 					activity.title,
-					activity.date,
-					activity.location,
 					activity.description,
-					activity.max_participants,
-					activity.created_by,
+					activity.location,
+					activity.date,
+					activity.maxParticipants,
+					activity.currentParticipants,
+					activity.status,
 					activity.createdAt,
 					activity.updatedAt,
 				]
@@ -28,7 +30,7 @@ export class PostgresActivitiesRepository implements IActivitiesRepository {
 				error.message
 			);
 		} finally {
-			client.release(); // Release the client
+			client.release();
 		}
 	}
 
@@ -37,15 +39,16 @@ export class PostgresActivitiesRepository implements IActivitiesRepository {
 		const client = await pool.connect();
 		try {
 			await client.query(
-				"UPDATE activities SET title = $2, date = $3, location = $4, description = $5, max_participants = $6, created_by = $7, updated_at = $8 WHERE id = $1",
+				"UPDATE activities SET title = $2, description = $3, location = $4, date = $5, status = $6, current_participants = $7, max_participants = $8, updated_at = $9 WHERE id = $1",
 				[
 					activity.id,
 					activity.title,
-					activity.date,
-					activity.location,
 					activity.description,
-					activity.max_participants,
-					activity.created_by,
+					activity.location,
+					activity.date,
+					activity.status,
+					activity.currentParticipants,
+					activity.maxParticipants,
 					activity.updatedAt,
 				]
 			);
@@ -87,19 +90,19 @@ export class PostgresActivitiesRepository implements IActivitiesRepository {
 				// Return the found activity mapped to the Activity entity
 				const activityRow = res.rows[0];
 				// Pass props and id to the Activity constructor
-				const activity = new Activity(
-					{
-						title: activityRow.title,
-						date: activityRow.date,
-						location: activityRow.location,
-						description: activityRow.description,
-						max_participants: activityRow.max_participants,
-						created_by: activityRow.created_by,
-					},
-					activityRow.id,
-					activityRow.created_at,
-					activityRow.updated_at
-				);
+				const activity = new Activity({
+					id: activityRow.id,
+					createdBy: activityRow.created_by,
+					title: activityRow.title,
+					description: activityRow.description,
+					location: activityRow.location,
+					date: activityRow.date,
+					maxParticipants: activityRow.max_participants,
+					currentParticipants: activityRow.current_participants,
+					status: activityRow.status,
+					createdAt: activityRow.created_at,
+					updatedAt: activityRow.updated_at,
+				});
 				return activity;
 			}
 			return null;
