@@ -12,4 +12,7 @@ export interface IActivitiesRepository {
 
 	// Method to find a activity by id
 	findById(id: string): Promise<Activity>;
+
+	// Method to find all available activities
+	findAllAvailable(): Promise<Activity[]>;
 }
