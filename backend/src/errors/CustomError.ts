@@ -341,6 +341,33 @@ class ErrorCatalog {
 				},
 			},
 		},
+		REGISTRATION: {
+			REPOSITORY: {
+				REGISTRATION_SAVE_FAILED: {
+					message: "Failed to save registration",
+					errorName: "REGISTRATION_SAVE_FAILED",
+					statusCode: 500,
+				},
+				MAX_PARTICIPANTS_REACHED: {
+					message: "Maximum number of participants reached",
+					errorName: "MAX_PARTICIPANTS_REACHED",
+					statusCode: 400,
+				},
+			},
+			SERVICE: {
+				MAX_PARTICIPANTS_REACHED: {
+					message: "Maximum number of participants reached",
+					errorName: "MAX_PARTICIPANTS_REACHED",
+					statusCode: 400,
+				},
+				ACTIVITY_NOT_AVAILABLE: {
+					message:
+						"The activity is no longer available for new participants",
+					errorName: "ACTIVITY_NOT_AVAILABLE",
+					statusCode: 400,
+				},
+			},
+		},
 		SERVER: {
 			INTERNAL_ERROR: {
 				message: "Internal server error",
