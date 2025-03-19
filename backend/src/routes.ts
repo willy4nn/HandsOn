@@ -9,6 +9,7 @@ import { createActivityController } from "./useCases/Activity/CreateActivity";
 import { updateActivityController } from "./useCases/Activity/UpdateActivity";
 import { deleteActivityController } from "./useCases/Activity/DeleteActivity";
 import { listActivitiesController } from "./useCases/Activity/ListActivities";
+import { findActivityController } from "./useCases/Activity/FindActivity";
 
 const router = Router();
 
@@ -55,6 +56,11 @@ router.delete("/activities/:id", authMiddleware, (request, response, next) => {
 // GET route to list all available activities
 router.get("/activities", authMiddleware, (request, response, next) => {
 	return listActivitiesController.handle(request, response, next);
+});
+
+// GET route to find a specific activity by ID
+router.get("/activities/:id", authMiddleware, (request, response, next) => {
+	return findActivityController.handle(request, response, next);
 });
 
 export { router };
