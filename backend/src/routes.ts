@@ -10,6 +10,7 @@ import { updateActivityController } from "./useCases/Activity/UpdateActivity";
 import { deleteActivityController } from "./useCases/Activity/DeleteActivity";
 import { listActivitiesController } from "./useCases/Activity/ListActivities";
 import { findActivityController } from "./useCases/Activity/FindActivity";
+import { createRegistrationController } from "./useCases/Registration/CreateRegistration";
 
 const router = Router();
 
@@ -62,5 +63,14 @@ router.get("/activities", authMiddleware, (request, response, next) => {
 router.get("/activities/:id", authMiddleware, (request, response, next) => {
 	return findActivityController.handle(request, response, next);
 });
+
+// POST route to register a user for a specific activity by ID
+router.post(
+	"/activities/:id/register",
+	authMiddleware,
+	(request, response, next) => {
+		return createRegistrationController.handle(request, response, next);
+	}
+);
 
 export { router };
