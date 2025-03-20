@@ -14,7 +14,7 @@ interface NewActivityProps {
 interface ExistingActivityProps extends NewActivityProps {
 	id: string;
 	currentParticipants: number;
-	status: "pending" | "active" | "completed" | "cancelled" | "full";
+	status: "upcoming" | "closed";
 	createdAt: string;
 	updatedAt: string;
 }
@@ -28,7 +28,7 @@ export class Activity {
 	readonly date: string;
 	readonly maxParticipants: number;
 	readonly currentParticipants: number;
-	readonly status: "pending" | "active" | "completed" | "cancelled" | "full";
+	readonly status: "upcoming" | "closed";
 	readonly createdAt: string;
 	readonly updatedAt: string;
 
@@ -39,12 +39,6 @@ export class Activity {
 		if ("id" in props) {
 			// Initialize from an existing activity
 			this.id = props.id;
-			this.createdBy = props.createdBy;
-			this.title = props.title;
-			this.description = props.description;
-			this.location = props.location;
-			this.date = props.date;
-			this.maxParticipants = props.maxParticipants;
 			this.currentParticipants = props.currentParticipants;
 			this.status = props.status;
 			this.createdAt = props.createdAt;
@@ -52,16 +46,17 @@ export class Activity {
 		} else {
 			// Initialize a new activity with default values
 			this.id = uuidv4();
-			this.createdBy = props.createdBy;
-			this.title = props.title;
-			this.description = props.description;
-			this.location = props.location;
-			this.date = props.date;
-			this.maxParticipants = props.maxParticipants;
 			this.currentParticipants = 0; // Default value for new activities
-			this.status = "pending"; // Default status for new activities
+			this.status = "upcoming"; // Default status for new activities
 			this.createdAt = new Date().toISOString();
 			this.updatedAt = this.createdAt;
 		}
+		// Common properties shared between new and existing activities
+		this.createdBy = props.createdBy;
+		this.title = props.title;
+		this.description = props.description;
+		this.location = props.location;
+		this.date = props.date;
+		this.maxParticipants = props.maxParticipants;
 	}
 }

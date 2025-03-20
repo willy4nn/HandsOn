@@ -33,8 +33,8 @@ export class CreateRegistrationUseCase {
 
 		const { currentParticipants, maxParticipants, status } = foundActivity;
 
-		// If the activity is not available (status is not "pending"), throw an error
-		if (status !== "pending") {
+		// If the activity is not available (status is not "upcoming"), throw an error
+		if (status !== "upcoming") {
 			throw new CustomError(
 				ErrorCatalog.ERROR.REGISTRATION.SERVICE.ACTIVITY_NOT_AVAILABLE
 			);
@@ -53,15 +53,10 @@ export class CreateRegistrationUseCase {
 		// Save the registration
 		await this.registrationsRepository.save(registration);
 
-		// Update the activity in a single request
-		const updatedStatus =
-			currentParticipants + 1 >= maxParticipants ? "full" : status;
-
 		// Update the activity's participant count and status
 		await this.activitiesRepository.update({
 			...foundActivity,
 			currentParticipants: currentParticipants + 1,
-			status: updatedStatus,
 		});
 
 		// Return the registration response
