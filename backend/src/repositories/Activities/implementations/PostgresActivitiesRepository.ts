@@ -116,13 +116,13 @@ export class PostgresActivitiesRepository implements IActivitiesRepository {
 		}
 	}
 
-	// Method to find all available activities (status = pending)
+	// Method to find all available activities (status = upcoming)
 	async findAllAvailable(): Promise<Activity[]> {
 		const client = await pool.connect();
 		try {
 			const res = await client.query(
 				"SELECT * FROM activities WHERE status = $1",
-				["pending"]
+				["upcoming"]
 			);
 			// Map the rows to Activity entities
 			return res.rows.map(
