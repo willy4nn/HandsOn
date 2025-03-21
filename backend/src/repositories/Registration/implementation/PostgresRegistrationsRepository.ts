@@ -123,4 +123,38 @@ export class PostgresRegistrationsRepository
 			client.release();
 		}
 	}
+
+	// Method to find all registrations of a specific activity by activity ID
+	async findActivityParticipants(
+		activityId: string
+	): Promise<Registration[]> {
+		const client = await pool.connect();
+		try {
+			const result = await client.query(
+				"SELECT * FROM registrations WHERE activity_id = $1",
+				[activityId]
+			);
+
+			if (result.rowCount === 0) {
+				return [];
+			}
+
+			return result.rows.map(
+				(row) =>
+					new Registration({
+						id: row.id,
+						userId: row.user_id,
+						activityId: row.activity_id,
+						createdAt: row.created_at,
+					})
+			);
+		} catch (error) {
+			throw new CustomError(
+				ErrorCatalog.ERROR.REGISTRATION.REPOSITORY.REGISTRATION_FETCH_FAILED,
+				error.message
+			);
+		} finally {
+			client.release();
+		}
+	}
 }
