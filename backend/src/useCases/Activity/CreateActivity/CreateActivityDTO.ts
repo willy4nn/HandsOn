@@ -6,7 +6,6 @@ export interface ICreateActivityRequestDTO {
 	location: string;
 	date: string;
 	maxParticipants: number;
-	role: string;
 }
 
 // Fields returned in the response after creating an activity
