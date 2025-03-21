@@ -3,6 +3,7 @@ import { createUserController } from "./useCases/User/CreateUser";
 import { loginUserController } from "./useCases/User/LoginUser";
 import { logoutUserController } from "./useCases/User/LogoutUser";
 import { authMiddleware } from "./middlewares/authMiddleware";
+import { adminMiddleware } from "./middlewares/adminAuthMiddleware";
 import { updateUserController } from "./useCases/User/UpdateUser";
 import { deleteUserController } from "./useCases/User/DeleteUser";
 import { createActivityController } from "./useCases/Activity/CreateActivity";
@@ -43,19 +44,34 @@ router.delete("/users", authMiddleware, (request, response, next) => {
 });
 
 // POST route to create a activity
-router.post("/activities", authMiddleware, (request, response, next) => {
-	return createActivityController.handle(request, response, next);
-});
+router.post(
+	"/activities",
+	authMiddleware,
+	adminMiddleware,
+	(request, response, next) => {
+		return createActivityController.handle(request, response, next);
+	}
+);
 
-// POST route to create a activity
-router.put("/activities/:id", authMiddleware, (request, response, next) => {
-	return updateActivityController.handle(request, response, next);
-});
+// PUT route to update a activity
+router.put(
+	"/activities/:id",
+	authMiddleware,
+	adminMiddleware,
+	(request, response, next) => {
+		return updateActivityController.handle(request, response, next);
+	}
+);
 
 // DELETE route to delete a activity
-router.delete("/activities/:id", authMiddleware, (request, response, next) => {
-	return deleteActivityController.handle(request, response, next);
-});
+router.delete(
+	"/activities/:id",
+	authMiddleware,
+	adminMiddleware,
+	(request, response, next) => {
+		return deleteActivityController.handle(request, response, next);
+	}
+);
 
 // GET route to list all available activities
 router.get("/activities", authMiddleware, (request, response, next) => {
@@ -92,8 +108,9 @@ router.get("/my-activities", authMiddleware, (request, response, next) => {
 
 // GET route to fetch participants of a specific activity
 router.get(
-	"//activities/:id/participants",
+	"/activities/:id/participants",
 	authMiddleware,
+	adminMiddleware,
 	(request, response, next) => {
 		return findActivityParticipantsController.handle(
 			request,

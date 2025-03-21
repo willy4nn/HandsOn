@@ -10,13 +10,6 @@ export class DeleteActivityUseCase {
 		// Validates the passed information
 		deleteActivityValidator(data);
 
-		// Validate if the role is admin
-		if (data.role !== "admin") {
-			throw new CustomError(
-				ErrorCatalog.ERROR.ACTIVITY.VALIDATION.INVALID_ROLE
-			);
-		}
-
 		// Checks if the user exists by ID
 		const activityExists = await this.activitiesRepository.findById(
 			data.id
