@@ -6,7 +6,6 @@ export interface IUpdateActivityRequestDTO {
 	location?: string;
 	maxParticipants?: number;
 	date?: string;
-	role: string;
 }
 
 // Fields returned in the response after updating a activity
