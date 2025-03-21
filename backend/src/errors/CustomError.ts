@@ -353,6 +353,16 @@ class ErrorCatalog {
 					errorName: "MAX_PARTICIPANTS_REACHED",
 					statusCode: 400,
 				},
+				REGISTRATION_DELETE_FAILED: {
+					message: "Failed to delete registration",
+					errorName: "REGISTRATION_DELETE_FAILED",
+					statusCode: 500,
+				},
+				REGISTRATION_NOT_FOUND: {
+					message: "Registration not found",
+					errorName: "REGISTRATION_NOT_FOUND",
+					statusCode: 404,
+				},
 			},
 			SERVICE: {
 				MAX_PARTICIPANTS_REACHED: {
@@ -365,6 +375,11 @@ class ErrorCatalog {
 						"The activity is no longer available for new participants",
 					errorName: "ACTIVITY_NOT_AVAILABLE",
 					statusCode: 400,
+				},
+				REGISTRATION_NOT_FOUND: {
+					message: "Registration not found",
+					errorName: "REGISTRATION_NOT_FOUND",
+					statusCode: 404,
 				},
 			},
 		},
