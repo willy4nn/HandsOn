@@ -13,6 +13,7 @@ import { findActivityController } from "./useCases/Activity/FindActivity";
 import { createRegistrationController } from "./useCases/Registration/CreateRegistration";
 import { deleteRegistrationController } from "./useCases/Registration/DeleteRegistration";
 import { findUserRegistrationsController } from "./useCases/Registration/FindUserRegistrations";
+import { findActivityParticipantsController } from "./useCases/Registration/FindActivityParticipants";
 
 const router = Router();
 
@@ -88,5 +89,18 @@ router.delete(
 router.get("/my-activities", authMiddleware, (request, response, next) => {
 	return findUserRegistrationsController.handle(request, response, next);
 });
+
+// GET route to fetch participants of a specific activity
+router.get(
+	"//activities/:id/participants",
+	authMiddleware,
+	(request, response, next) => {
+		return findActivityParticipantsController.handle(
+			request,
+			response,
+			next
+		);
+	}
+);
 
 export { router };
