@@ -12,6 +12,7 @@ import { listActivitiesController } from "./useCases/Activity/ListActivities";
 import { findActivityController } from "./useCases/Activity/FindActivity";
 import { createRegistrationController } from "./useCases/Registration/CreateRegistration";
 import { deleteRegistrationController } from "./useCases/Registration/DeleteRegistration";
+import { findUserRegistrationsController } from "./useCases/Registration/FindUserRegistrations";
 
 const router = Router();
 
@@ -82,5 +83,10 @@ router.delete(
 		return deleteRegistrationController.handle(request, response, next);
 	}
 );
+
+// GET route to fetch user registrations
+router.get("/my-activities", authMiddleware, (request, response, next) => {
+	return findUserRegistrationsController.handle(request, response, next);
+});
 
 export { router };
