@@ -9,4 +9,7 @@ export interface IRegistrationsRepository {
 
 	// Method to find a registration by its ID
 	findById(id: string): Promise<Registration>;
+
+	// Method to find all registrations of a specific user by user ID
+	findUserRegistrations(id: string): Promise<Registration[]>;
 }
