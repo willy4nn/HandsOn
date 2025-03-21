@@ -363,6 +363,11 @@ class ErrorCatalog {
 					errorName: "REGISTRATION_NOT_FOUND",
 					statusCode: 404,
 				},
+				REGISTRATION_FETCH_FAILED: {
+					message: "Failed to fetch user registrations",
+					errorName: "REGISTRATION_FETCH_FAILED",
+					statusCode: 500,
+				},
 			},
 			SERVICE: {
 				MAX_PARTICIPANTS_REACHED: {
