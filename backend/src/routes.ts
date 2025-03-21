@@ -11,6 +11,7 @@ import { deleteActivityController } from "./useCases/Activity/DeleteActivity";
 import { listActivitiesController } from "./useCases/Activity/ListActivities";
 import { findActivityController } from "./useCases/Activity/FindActivity";
 import { createRegistrationController } from "./useCases/Registration/CreateRegistration";
+import { deleteRegistrationController } from "./useCases/Registration/DeleteRegistration";
 
 const router = Router();
 
@@ -70,6 +71,15 @@ router.post(
 	authMiddleware,
 	(request, response, next) => {
 		return createRegistrationController.handle(request, response, next);
+	}
+);
+
+// DELETE route to delete a registration
+router.delete(
+	"/activities/:id/register",
+	authMiddleware,
+	(request, response, next) => {
+		return deleteRegistrationController.handle(request, response, next);
 	}
 );
 
