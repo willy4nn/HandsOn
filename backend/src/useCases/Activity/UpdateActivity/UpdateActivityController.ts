@@ -12,7 +12,6 @@ export class UpdateActivityController {
 		next: NextFunction
 	): Promise<Response<ApiResponse<IUpdateActivityResponseDTO>>> {
 		// Retrieve the user ID and role from the req.user object
-		const { role } = request.user;
 		const { id } = request.params;
 		const { title, description, location, maxParticipants, date } =
 			request.body;
@@ -27,7 +26,6 @@ export class UpdateActivityController {
 					description,
 					location,
 					maxParticipants,
-					role,
 				}
 			);
 
