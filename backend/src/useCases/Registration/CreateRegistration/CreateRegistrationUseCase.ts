@@ -31,7 +31,15 @@ export class CreateRegistrationUseCase {
 			);
 		}
 
-		const { currentParticipants, maxParticipants, status } = foundActivity;
+		const { currentParticipants, maxParticipants, status, date } =
+			foundActivity;
+
+		// If the current date is after the activity's date, throw an error
+		if (new Date() > new Date(date)) {
+			throw new CustomError(
+				ErrorCatalog.ERROR.REGISTRATION.SERVICE.ACTIVITY_HAS_ALREADY_STARTED
+			);
+		}
 
 		// If the activity is not available (status is not "upcoming"), throw an error
 		if (status !== "upcoming") {
