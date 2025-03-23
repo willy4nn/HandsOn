@@ -30,9 +30,17 @@ export class DeleteRegistrationUseCase {
 		const foundActivity = await this.activitiesRepository.findById(
 			foundRegistration.activityId
 		);
+
 		if (!foundActivity) {
 			throw new CustomError(
 				ErrorCatalog.ERROR.ACTIVITY.SERVICE.ACTIVITY_NOT_FOUND
+			);
+		}
+
+		// Check if the activity has already started
+		if (new Date() > new Date(foundActivity.date)) {
+			throw new CustomError(
+				ErrorCatalog.ERROR.REGISTRATION.SERVICE.CANNOT_CANCEL_AFTER_START
 			);
 		}
 

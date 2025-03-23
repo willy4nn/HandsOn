@@ -386,6 +386,18 @@ class ErrorCatalog {
 					errorName: "REGISTRATION_NOT_FOUND",
 					statusCode: 404,
 				},
+				CANNOT_CANCEL_AFTER_START: {
+					message:
+						"You cannot cancel your registration after the activity has started",
+					errorName: "CANNOT_CANCEL_AFTER_START",
+					statusCode: 400,
+				},
+				ACTIVITY_HAS_ALREADY_STARTED: {
+					message:
+						"This activity has already started and cannot accept new participants",
+					errorName: "ACTIVITY_HAS_ALREADY_STARTED",
+					statusCode: 400,
+				},
 			},
 		},
 		SERVER: {
