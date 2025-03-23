@@ -17,5 +17,4 @@ export function createActivityValidator(data: ICreateActivityRequestDTO): void {
 	validateLocation(data.location);
 	validateDate(data.date);
 	validateMaxParticipants(data.maxParticipants);
-	validateRole(data.role);
 }

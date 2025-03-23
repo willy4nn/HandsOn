@@ -4,7 +4,6 @@ import {
 	validateDescription,
 	validateLocation,
 	validateMaxParticipants,
-	validateRole,
 	validateDate,
 } from "../../../validators/activityValidators";
 
@@ -34,7 +33,4 @@ export function updateActivityValidator(data: IUpdateActivityRequestDTO): void {
 	if (data.date) {
 		validateDate(data.date);
 	}
-
-	// Always validate role
-	validateRole(data.role);
 }
