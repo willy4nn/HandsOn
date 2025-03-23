@@ -12,7 +12,7 @@ export class CreateActivityController {
 		next: NextFunction
 	): Promise<Response<ICreateActivityResponseDTO>> {
 		// Retrieve the user ID from the req.user object
-		const { userId, role } = request.user;
+		const { userId } = request.user;
 		const { title, description, location, maxParticipants, date } =
 			request.body;
 
@@ -21,7 +21,6 @@ export class CreateActivityController {
 			const createdActivityDTO = await this.createActivityUseCase.execute(
 				{
 					createdBy: userId,
-					role,
 					title,
 					description,
 					location,
