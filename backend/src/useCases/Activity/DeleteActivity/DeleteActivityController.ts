@@ -11,7 +11,6 @@ export class DeleteActivityController {
 		response: Response,
 		next: NextFunction
 	): Promise<Response<ApiResponse<IDeleteActivityRequestDTO>>> {
-		const { role } = request.user;
 		const { id } = request.params;
 
 		try {
@@ -19,7 +18,6 @@ export class DeleteActivityController {
 			const updatedActivityDTO = await this.deleteActivityUseCase.execute(
 				{
 					id,
-					role,
 				}
 			);
 
